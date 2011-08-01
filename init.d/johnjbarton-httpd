@@ -1,39 +1,39 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          myapp-processor
+# Provides:          johnjbarton-httpd
 # Required-Start:    $remote_fs
 # Required-Stop:     $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: myapp processor
-# Description:       myapp processor
+# Short-Description: johnjbarton HTTP server
+# Description:       johnjbarton HTTP server
 ### END INIT INFO
 #
 # Installation:
 #   1. Put a copy of or make a symlink to this script in /etc/init.d
-#   2. update-rc.d myapp-processor defaults
+#   2. update-rc.d johnjbarton-httpd defaults
 #
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
-NAME=myapp-processor
-DESC="myapp description here"
-RUNDIR=/var/run/myapp
-LOGDIR=/var/log/myapp
+NAME=johnjbarton-httpd
+DESC="johnjbarton HTTP server"
+RUNDIR=/var/run/johnjbarton
+LOGDIR=/var/log/johnjbarton
 SCRIPTNAME=/etc/init.d/$NAME
 USER=www-data
 GROUP=www-data
 #RELOAD_SIGNAL=1
 
-# Node.js Move
+# Node.js
 MOVE_PROGRAM=/usr/local/bin/move
-MOVE_SCRIPT=/var/myapp/bin/myapp-processor.mv
+MOVE_SCRIPT=/var/johnjbarton/bin/johnjbarton-httpd.mv
 MOVE_ARGS="$MOVE_PROGRAM"
 
 # Daemon supervisor config
 SUPERVISOR=/usr/bin/daemon
-SUPERVISOR_ARGS="--respawn --delay=30" # do NOT set --user here
+SUPERVISOR_ARGS="--respawn --delay=30" # do NOT set "--user" here
 SUPERVISOR_PIDDIR="$RUNDIR"
 PIDFILE="$SUPERVISOR_PIDDIR/$NAME.pid"
 
